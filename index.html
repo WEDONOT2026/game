@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP 跑团网页版</title>
+    <style>
+        body { background: #121212; color: #00ff00; font-family: 'Courier New', monospace; text-align: center; padding: 40px; }
+        .container { border: 1px solid #00ff00; max-width: 600px; margin: 0 auto; background: #1e1e1e; padding: 30px; border-radius: 8px; }
+        .btn { display: block; padding: 15px; margin: 15px 0; background: #333; color: #00ff00; border: 1px solid #00ff00; text-decoration: none; font-size: 16px; }
+        .btn:hover { background: #00ff00; color: #121212; }
+        .btn-primary { background: #00ff00; color: #121212; }
+        .note { font-size: 12px; color: #888; margin-top: 20px; text-align: left; border-top: 1px solid #333; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>&gt;&gt;&gt; Welcome, SCP</h1>
+        <p>全程纯网页化，无需下载，浏览器内部完成所有数据读写。</p>
+        <p>（已规避本地磁盘权限问题，绝不导致服务器重启）</p>
+        <hr>
+        
+        <a href="app/web/init_db.html" class="btn btn-primary">❶ 初始化数据库 (在网页内生成 sthing.db)</a>
+        <a href="app/web/game.html" class="btn">❷ 进入游戏终端 (基于内部数据库登录)</a>
+        
+        <div class="note">
+            ✅ 逻辑说明：<br>
+            1. 点击【初始化】，网页会在浏览器的 IndexedDB 中申请一个名为 "sthing.db" 的存储空间，并在内部（内存中）创建 SQLite 数据表结构。<br>
+            2. 数据仅存储在您的浏览器缓存中，<b>不需要访问任何本地文件系统</b>，因此绝对安全，权限无越界。<br>
+            3. 点击【进入游戏】，网页会自动读取 IndexedDB 中的二进制数据，还原为 SQLite 数据库进行身份验证与游戏执行。
+        </div>
+    </div>
+</body>
+</html>
