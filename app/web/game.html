@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>SCP 跑团终端 (网页版)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <style>
+        body { background: #121212; color: #00ff00; font-family: 'Courier New', monospace; margin: 0; padding: 10px; }
+        .screen { max-width: 600px; margin: 0 auto; background: #1e1e1e; border: 2px solid #00ff00; border-radius: 8px; padding: 15px; }
+        h3 { text-align: center; border-bottom: 1px solid #00ff00; padding-bottom: 10px; }
+        .input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+        .input-group input, .input-group select { background: #000; border: 1px solid #00ff00; color: #00ff00; padding: 10px; font-family: monospace; }
+        .btn { background: #00ff00; color: #000; border: none; padding: 10px; font-weight: bold; cursor: pointer; width: 100%; }
+        #terminal-output { background: #000; border: 1px solid #333; height: 200px; overflow-y: auto; padding: 5px; font-size: 14px; line-height: 1.4; margin-bottom: 10px; }
+        #cmd-line { display: flex; gap: 5px; }
+        #cmd-input { flex: 1; background: #000; border: 1px solid #00ff00; color: #00ff00; padding: 8px; font-family: monospace; outline: none; }
+        #btn-submit-cmd { background: #00ff00; color: #000; border: none; padding: 8px 15px; cursor: pointer; }
+        .error { color: #ff5555; }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <h3>&gt;&gt;&gt; SCP 跑团终端</h3>
+
+        <div id="login-area">
+            <div class="input-group">
+                <label>用户 (User)</label>
+                <input type="text" id="username" placeholder="admin">
+                <label>密码 / 哈希串</label>
+                <input type="text" id="token" placeholder="输入密码或Hash">
+                <label>登录模式</label>
+                <select id="auth_mode">
+                    <option value="password">密码模式 (第8行)</option>
+                    <option value="hash">哈希(Hx)模式 (第9行)</option>
+                </select>
+                <button class="btn" id="btn-login">▶ 验证身份</button>
+            </div>
+        </div>
+
+        <div id="game-area" style="display:none;">
+            <div id="terminal-output">等待连接内部数据库...</div>
+            <div id="cmd-line">
+                <input type="text" id="cmd-input" placeholder="输入指令 (help)">
+                <button id="btn-submit-cmd">执行</button>
+            </div>
+            <div style="text-align:center;color:#888;font-size:12px;margin-top:10px;">数据保存在浏览器 IndexedDB 中，无文件权限问题</div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
