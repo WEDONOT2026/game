@@ -26,8 +26,24 @@
                 userip TEXT, version TEXT, pass TEXT, hash TEXT,
                 money INTEGER DEFAULT 1000000, level TEXT DEFAULT "杀手", base TEXT DEFAULT "无"
             );`);
-            db.run(`INSERT INTO users (username, time, t, userid, userip, version, pass, hash) 
-            VALUES ('admin', '20280800101', 'T', 'mcjs-cc', '127.0.0.1', '3.0.1', '80800101', 'a2bCAcCdeziqP97AeZppA7319');`);
+            // 2. 创建表结构（包含您缺失的 inventory 字段）
+            db.run(`
+                CREATE TABLE users (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    username TEXT,
+                    time TEXT,
+                    t TEXT,
+                    userid TEXT,
+                    userip TEXT,
+                    version TEXT,
+                    pass TEXT,
+                    hash TEXT,
+                    money INTEGER DEFAULT 1000000,
+                    level TEXT DEFAULT "杀手",
+                    base TEXT DEFAULT "无",
+                    inventory TEXT DEFAULT "{}"  // 👈 新增这一行，专门用文本存背包数据
+                );
+            `);
             
             const blob = new Blob([db.export()], { type: 'application/x-sqlite3' });
             const link = document.createElement('a');
