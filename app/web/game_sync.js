@@ -1,5 +1,5 @@
 // ---- 1. 配置区 (请替换为您自己的 Supabase 欧洲节点信息) ----
-const SUPABASE_URL = 'https://您的项目ID.supabase.co';
+const SUPABASE_URL = 'https://pqdplhemuficnqqfgklm.supabase.co';
 const SUPABASE_ANON_KEY = 'MjN65DSJyPrnBds5'; 
 
 // 如果未来国内访问Supabase确实受阻，可在此处换成 Cloudflare Worker 搭建的国内加速代理地址
