@@ -28,21 +28,7 @@
             );`);
             // 2. 创建表结构（包含您缺失的 inventory 字段）
             db.run(`
-                CREATE TABLE users (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username TEXT,
-                    time TEXT,
-                    t TEXT,
-                    userid TEXT,
-                    userip TEXT,
-                    version TEXT,
-                    pass TEXT,
-                    hash TEXT,
-                    money INTEGER DEFAULT 1000000,
-                    level TEXT DEFAULT "杀手",
-                    base TEXT DEFAULT "无",
-                    inventory TEXT DEFAULT "{}" 
-                );
+                CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT,time TEXT,t TEXT,userid TEXT,userip TEXT,version TEXT,pass TEXT,hash TEXT,money INTEGER DEFAULT 1000000,level TEXT DEFAULT "杀手",base TEXT DEFAULT "无",inventory TEXT DEFAULT "{}" );
             `);
             
             const blob = new Blob([db.export()], { type: 'application/x-sqlite3' });
